@@ -1,5 +1,4 @@
 import requests
-
 from datetime import datetime
 
 api_key = '87d845b0b6cf29baa1a73cc34b067a95'
@@ -9,7 +8,6 @@ complete_api_link = "https://api.openweathermap.org/data/2.5/weather?q="+locatio
 api_link = requests.get(complete_api_link)
 api_data = api_link.json()
 
-#create variables to store and display data
 temp_city = ((api_data['main']['temp']) - 273.15)
 weather_desc = api_data['weather'][0]['description']
 hmdt = api_data['main']['humidity']
@@ -20,6 +18,7 @@ print ("-------------------------------------------------------------")
 print ("Weather Stats for - {}  || {}".format(location.upper(), date_time))
 print ("-------------------------------------------------------------")
 
+loc = "Weather Stats for - {} || {}".format(location.upper(),date_time)
 t = "Current temperature is: {:.2f} deg C".format(temp_city)
 w = "Current weather desc  : {}".format(weather_desc)
 h = "Current Humidity      : {} %".format(hmdt)
@@ -30,17 +29,13 @@ print(w)
 print(h)
 print(ws)
 
-file1 = open("Myfile.txt","a")
-
-file1 = open("Myfile.txt","a")
-file1.close()
-file1 = open("myfile.txt","w")
-L = [t ,w ,h ,ws]
-
+file1 = open("weather_report.txt","w+")
+L = {t+'\n'+ w+'\n'+h+'\n'+ws}
+file1.write(loc +'\n')
 file1.writelines(L)
 file1.close()
 
-file1 = open("myfile.txt","r+")
+file1 = open("weather_report.txt","r+")
 
-print("Output of Read function is ")
+print("\nOutput of Read function is ")
 print(file1.read())
