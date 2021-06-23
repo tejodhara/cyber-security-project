@@ -1,5 +1,5 @@
 import requests
-#import os
+
 from datetime import datetime
 
 api_key = '87d845b0b6cf29baa1a73cc34b067a95'
@@ -36,9 +36,8 @@ file1 = open("Myfile.txt","a")
 file1.close()
 file1 = open("myfile.txt","w")
 L = [t ,w ,h ,ws]
-L_str= str(L)
 
-file1.writelines(L_str)
+file1.writelines(L)
 file1.close()
 
 file1 = open("myfile.txt","r+")
